@@ -1,0 +1,19 @@
+{
+  "name": "shopping-cart-server",
+  "version": "1.0.0",
+  "description": "장바구니 서버",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iHateAI/ShoppingCart.git"
+  },
+  "author": "Hyun-Seong Hwang",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/iHateAI/ShoppingCart/issues"
+  },
+  "homepage": "https://github.com/iHateAI/ShoppingCart#readme"
+}
