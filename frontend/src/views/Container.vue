@@ -1,18 +1,22 @@
 <template>
   <div>
     <Header />
-    <Products />
+    <router-view />
   </div>
 </template>
 
 <script>
 import Header from './Header.vue'
-import Products from './Products.vue'
 
 export default { 
   components: {
     Header,
-    Products,
+  },
+  data() {
+    return {
+      isLogin: false,
+      username: '',
+    }
   }
 }
 </script>

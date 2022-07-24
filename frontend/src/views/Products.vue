@@ -1,6 +1,6 @@
 <template>
-  <div v-bind:class="container">
-    dd
+  <div>
+    상품 선택 화면
   </div>
 </template>
 
@@ -13,7 +13,5 @@ export default {
 </script>
 
 <style scoped>
-.container {
-  background-color: orange;
-}
+
 </style>
