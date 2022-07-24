@@ -14,8 +14,8 @@ export default {
   },
   data() {
     return {
-      isLogin: false,
-      username: '',
+      isLogin: true,
+      username: 'ㅇㅇ',
     }
   }
 }
