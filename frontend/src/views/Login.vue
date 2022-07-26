@@ -10,8 +10,8 @@
           <input type="password" placeholder="Password" class="input-pw">
         </p>
       </div>
-      <p class="btn-box"><button>Sign In</button></p>
-      <p class="join-box">계정이 없으신가요 <span><a href="#">Sign Up</a></span></p>
+      <p class="btn-box"><button>Login</button></p>
+      <p class="join-box">계정이 없으신가요? <span><a href="#">Sign Up</a></span></p>
     </div>
   </div>
 </template>
@@ -33,7 +33,6 @@ export default {
 
 .container .login-box {
   background-color: white;
-
   width: 400px;
   height: 450px;
   border-radius: 10px 10px;
@@ -62,7 +61,7 @@ export default {
 }
 
 .container .login-box .btn-box button {
-  width: 200px;
+  width: 300px;
   height: 50px;
   border-radius: 10px 10px;
   border: none;
@@ -70,14 +69,16 @@ export default {
   margin-bottom: 30px;
   color: white;
   cursor: pointer;
+  font-size: 20px;
 }
 
 .container .login-box .join-box {
   text-align: center;
+  font-weight: bolder;
 }
 
 input {
-  width: 200px;
+  width: 300px;
   height: 50px;
   border: none;
   border-bottom: 1px solid rgb(31, 231, 58);
