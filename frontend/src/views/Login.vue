@@ -85,7 +85,4 @@ input {
   outline: none;
   display: block;
 }
-
-
-
 </style>
