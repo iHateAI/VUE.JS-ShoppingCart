@@ -4,14 +4,14 @@
       <div class="title-box">
         <h1>Login</h1>
       </div>
-      <div class="input-id">
-        <input type="text" placeholder="ID">
+      <div class="input-box">
+        <p>
+          <input type="text" placeholder="ID" class="input-id">
+          <input type="password" placeholder="Password" class="input-pw">
+        </p>
       </div>
-      <div class="input-pw">
-        <input type="password" placeholder="Password">
-      </div>
-      <p><button>Sign In</button></p>
-      <p>계정이 없으신가요<span><a href="#">Sign Up</a></span></p>
+      <p class="btn-box"><button>Sign In</button></p>
+      <p class="join-box">계정이 없으신가요 <span><a href="#">Sign Up</a></span></p>
     </div>
   </div>
 </template>
@@ -25,7 +25,7 @@ export default {
 <style scoped>
 .container {
   height: 100vh;
-  background-color: green;
+  background-color:rgb(64,113,182);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -33,9 +33,11 @@ export default {
 
 .container .login-box {
   background-color: white;
+
   width: 400px;
-  height: 500px;
+  height: 450px;
   border-radius: 10px 10px;
+  box-shadow: 5px 5px 5px;
 }
 
 .container .login-box .title-box {
@@ -46,19 +48,41 @@ export default {
 .container .login-box .title-box h1 {
   text-align: center;
   line-height: 100px;
+  font-size: 40px;
 }
 
-.container .login-box .input-id, .input-pw {
+.container .login-box .input-box {
+  display: flex;
+  justify-content: center;
+  margin: 40px;
+}
+
+.container .login-box .btn-box {
   text-align: center;
-  margin: 30px;
 }
 
+.container .login-box .btn-box button {
+  width: 200px;
+  height: 50px;
+  border-radius: 10px 10px;
+  border: none;
+  background-color: rgb(64,113,182);
+  margin-bottom: 30px;
+  color: white;
+  cursor: pointer;
+}
+
+.container .login-box .join-box {
+  text-align: center;
+}
 
 input {
   width: 200px;
   height: 50px;
   border: none;
-  border-bottom: 1px solid rgb(109, 90, 90);
+  border-bottom: 1px solid rgb(31, 231, 58);
+  outline: none;
+  display: block;
 }
 
 
