@@ -6,7 +6,7 @@
         <div class="product-info">
           <h3 id="productBrand">{{product.brand}}</h3>
           <h5 id="productName">{{product.name}}</h5>
-          <h4 id="productPrice">{{product.price}}원</h4>
+          <h4 id="productPrice">{{product.price.toLocaleString()}}원</h4>
           <div id="productSizes">
             <span>S <input type="radio" name="size" value="s"></span>
             <span>M <input type="radio" name="size" value="m"></span>
