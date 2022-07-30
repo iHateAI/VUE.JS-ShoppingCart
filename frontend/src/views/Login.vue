@@ -25,7 +25,6 @@ export default {
 <style scoped>
 .container {
   height: 100vh;
-  background-color:rgb(64,113,182);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -36,7 +35,7 @@ export default {
   width: 400px;
   height: 450px;
   border-radius: 10px 10px;
-  box-shadow: 5px 5px 5px;
+  border:2px solid #ddd;
 }
 
 .container .login-box .title-box {
