@@ -1,9 +1,12 @@
 <template>
   <div class="container">
     <div class="cart-list">
-      <table>
-        
-      </table>
+      <div class="cart-item" :key="order.id" v-for="order in ordersData">
+        <img v-bind:src="order.imgUrl" class="product-img">
+        <div class="item-desc">
+          {{ order.brand }}, {{ order.name }}
+        </div>
+      </div>
     </div>
     
   </div>
