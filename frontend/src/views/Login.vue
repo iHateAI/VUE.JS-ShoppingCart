@@ -11,14 +11,30 @@
         </p>
       </div>
       <p class="btn-box"><button>Login</button></p>
-      <p class="join-box">계정이 없으신가요? <span><a href="#">Sign Up</a></span></p>
+      <p class="join-ask">계정이 없으신가요? <span class="show-join-modal" @click="showJoinModal">Sign Up</span></p>
     </div>
+
+    <div class="join-modal" v-if="isClickJoin">
+      <div class="join-box">
+        내용
+      </div>
+    </div>
+
   </div>
 </template>
 
 <script>
 export default {
-  
+  data() {
+    return {
+      isClickJoin: false,
+    }
+  },
+  methods: {
+    showJoinModal: function() {
+      this.isClickJoin = true;
+    }
+  }
 }
 </script>
 
@@ -71,12 +87,35 @@ export default {
   font-size: 20px;
 }
 
-.container .login-box .join-box {
+.container .login-box .join-ask {
   text-align: center;
   font-weight: bolder;
 }
 
-input {
+.container .login-box .join-ask .show-join-modal {
+  cursor: pointer;
+  border-bottom: 1px solid blue;
+}
+
+.container .join-modal {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container .join-modal .join-box {
+  background: white;
+  width: 500px;
+  height: 550px;
+  border-radius: 10px;
+  padding: 30px; 
+}
+
+.container .login-box .input-box input {
   width: 300px;
   height: 50px;
   border: none;
