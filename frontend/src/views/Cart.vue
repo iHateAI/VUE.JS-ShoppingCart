@@ -83,6 +83,7 @@ export default {
   color: white;
   cursor: pointer;
   font-size: 20px;
+  font-family: GangwonEdu_OTFBoldA;
 }
 
 .container .cart-list .cart-table .order-detail .order-img {
@@ -107,6 +108,7 @@ export default {
   font-weight: 900;
   color: rgb(136, 24, 39);
   cursor: pointer;
+  
 }
 
 
