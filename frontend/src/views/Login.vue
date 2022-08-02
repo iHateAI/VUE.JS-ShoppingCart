@@ -108,9 +108,9 @@ export default {
 }
 
 .container .join-modal .join-box {
-  background: white;
   width: 500px;
   height: 550px;
+  background: white;
   border-radius: 10px;
   padding: 30px; 
 }

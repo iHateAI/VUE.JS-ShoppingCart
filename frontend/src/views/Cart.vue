@@ -30,11 +30,17 @@
           </tr>
         </tbody>
       </table>
-      <button id="purchase-btn">
+      <button id="order-btn" @click="showOrderModal">
         주문하기
       </button>
     </div>
-    
+
+    <div class="order-modal" v-if="isClickOrder">
+      <div class="order-box">
+        주문은 여기서
+      </div>
+    </div>
+
   </div>
 </template>
 
@@ -47,6 +53,12 @@ export default {
         {id: 2, brand: '페플', name: '스테이 얼론 + 보드마스터 그래픽', price: 53800, imgUrl: `https://image.msscdn.net/images/goods_img/20210427/1921901/1921901_4_125.jpg`},
         {id: 3, brand: '예일', name: '2 TONE ARCH TEE', price: 39000, imgUrl: `https://image.msscdn.net/images/goods_img/20210312/1841764/1841764_3_125.jpg`},
       ],
+      isClickOrder: false,
+    }
+  },
+  methods: {
+    showOrderModal: function() {
+      this.isClickOrder = !this.isClickOrder;
     }
   }
 }
@@ -72,7 +84,7 @@ export default {
   border: 1px solid #ddd;
 }
 
-.container .cart-list #purchase-btn {
+.container .cart-list #order-btn {
   width: 200px;
   height: 50px;
   border-radius: 10px 10px;
@@ -111,6 +123,23 @@ export default {
   
 }
 
+.container .order-modal {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container .order-modal .order-box {
+  width: 500px;
+  height: 550px;
+  background: white;
+  border-radius: 10px;
+  padding: 30px; 
+}
 
 /* .container .cart-list .cart-item {
   width: 498px;
