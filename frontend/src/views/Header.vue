@@ -19,7 +19,7 @@ header {
   background-color: white;
   width: 100%;
   height: 80px;
-  position: fixed;
+  position: fixed;;
 }
 
 header ol {

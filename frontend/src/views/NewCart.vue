@@ -20,6 +20,7 @@ export default {
         {id: 1, brand: '커버낫', name: '에센셜 쿨 코튼 2-PACK 티셔츠', price: 49000, imgUrl: `https://image.msscdn.net/images/goods_img/20210316/1848166/1848166_11_125.jpg`},
         {id: 2, brand: '페플', name: '스테이 얼론 + 보드마스터 그래픽', price: 53800, imgUrl: `https://image.msscdn.net/images/goods_img/20210427/1921901/1921901_4_125.jpg`},
         {id: 3, brand: '예일', name: '2 TONE ARCH TEE', price: 39000, imgUrl: `https://image.msscdn.net/images/goods_img/20210312/1841764/1841764_3_125.jpg`},
+        
       ],
     }
   }
