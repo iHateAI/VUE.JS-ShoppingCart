@@ -10,3 +10,10 @@
 
 ## ~ 2022.07.28 개발 사항
 * FrontEnd - 상품 선택 화면 80% (Products.vue)
+
+## ~ 2022.08.03 개발 사항
+* FrontEnd - 상품 선택 화면 구현 (Products.vue)
+* FrontEnd - 장바구니 화면 구현 (Cart.vue)
+* FrontEnd - 회원가입 모달창 생성 (Login.vue)
+* FrontEnd - 주문 모달창 생성 (Cart.vue)
+* 모든 화면은 추후 재수정 할 것
