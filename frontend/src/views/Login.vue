@@ -16,7 +16,24 @@
 
     <div class="join-modal" v-if="isClickJoin">
       <div class="join-box">
-        내용
+        <div class="cancel-box">
+          <img class="back-icon" src="@/assets/images/backArrow.png" alt="뒤로가기 버튼" @click="hideJoinModal">
+        </div>
+        <div class="join-form">
+          <div class="input-box">
+            <p>
+              <div class="title-box">
+                <h1>Join</h1>
+              </div>
+              <input type="text" placeholder="아이디" class="input-join-id">
+              <input type="password" placeholder="비밀번호" class="input-join-pw">
+              <input type="password" placeholder="비밀번호 확인" class="input-join-pwcheck">
+              <input type="text" placeholder="이름" class="input-join-name">
+            </p>
+            <p class="join-btn-box"><button>Join</button></p>
+          </div>
+          
+        </div>
       </div>
     </div>
 
@@ -27,12 +44,15 @@
 export default {
   data() {
     return {
-      isClickJoin: false,
+      isClickJoin: true,
     }
   },
   methods: {
     showJoinModal: function() {
       this.isClickJoin = true;
+    },
+    hideJoinModal: function() {
+      this.isClickJoin = false;
     }
   }
 }
@@ -69,6 +89,15 @@ export default {
   display: flex;
   justify-content: center;
   margin: 40px;
+}
+
+.container .login-box .input-box input {
+  width: 300px;
+  height: 50px;
+  border: none;
+  border-bottom: 1px solid rgb(31, 231, 58);
+  outline: none;
+  display: block;
 }
 
 .container .login-box .btn-box {
@@ -115,7 +144,19 @@ export default {
   padding: 30px; 
 }
 
-.container .login-box .input-box input {
+.container .join-modal .join-box .input-box {
+  border-radius: 10px 10px;
+  border:2px solid #ddd;
+  padding: 40px;
+}
+
+.container .join-modal .join-box .input-box .title-box {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 40px;
+}
+
+.container .join-modal .join-box .join-form .input-box input{
   width: 300px;
   height: 50px;
   border: none;
@@ -123,4 +164,41 @@ export default {
   outline: none;
   display: block;
 }
+
+.container .join-modal .join-box .join-form .input-box .join-btn-box {
+  text-align: center;
+  margin-top: 40px;
+}
+
+.container .join-modal .join-box .join-form .input-box .join-btn-box button {
+  width: 300px;
+  height: 50px;
+  border-radius: 10px 10px;
+  border: none;
+  background-color: black;
+  margin-bottom: 30px;
+  color: white;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.container .join-modal .join-box .cancel-box {
+  width: 100%;
+  text-align: right;
+}
+
+.container .join-modal .join-box .cancel-box .back-icon {
+  width: 30px;
+  cursor: pointer;
+}
+
+.container .join-modal .join-box .join-form {
+  width: 100%;
+  height: 500px;
+  display: flex;
+  justify-content: center;
+
+}
+
+
 </style>
