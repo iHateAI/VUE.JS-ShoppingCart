@@ -44,7 +44,7 @@
 export default {
   data() {
     return {
-      isClickJoin: true,
+      isClickJoin: false,
     }
   },
   methods: {
