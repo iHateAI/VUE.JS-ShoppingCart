@@ -3,7 +3,6 @@
     <ol>
       <li><router-link to="/products">상품</router-link></li>
       <li><router-link to="/cart">장바구니</router-link></li>
-      <li><router-link to="/login">로그인</router-link></li>
     </ol>
   </header>
 </template>
