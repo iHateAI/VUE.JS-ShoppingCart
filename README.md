@@ -18,4 +18,9 @@
 * FrontEnd - 주문 모달창 생성 (Cart.vue)
 * FrontEnd - 회원가입 모달창 완성 (Login.vue)
 * FrontEnd - 주문 모달창 완성 (Cart.vue)
+
+## ~ 2022.08.04 개발 사항
+* FrontEnd - 홈, 로그인 화면 통합 (Home.vue)
+* BackEnd - 데이터베이스 생성, 테이블 정의
+* BackEnd - REST 주소 설계
 * 모든 화면은 추후 재수정 할 것
