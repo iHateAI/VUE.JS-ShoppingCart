@@ -62,7 +62,11 @@ export default {
     }
   },
   created() {
-    
+    axios.get('http://localhost:3000/api/')
+      .then((res) => {
+        const data = res.data;
+        console.log(data.test);
+      })
   },
 }
 </script>

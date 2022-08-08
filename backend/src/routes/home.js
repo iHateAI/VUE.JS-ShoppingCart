@@ -2,9 +2,9 @@ const express = require('express');
 
 const router = express.Router();
 
-//setting router
-router.get('/', (req, res) => {
-  res.json({
-    test: 'test',
-  });
-});
+//컨트롤러 불러오기
+const ctrl =  require('../controller/home.ctrl');
+
+router.get('/', ctrl.process.login);
+
+module.exports = router;
