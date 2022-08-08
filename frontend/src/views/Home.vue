@@ -44,6 +44,8 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
   data() {
     return {
@@ -58,7 +60,10 @@ export default {
     hideJoinModal: function() {
       this.isClickJoin = false;
     }
-  }
+  },
+  created() {
+    
+  },
 }
 </script>
 
