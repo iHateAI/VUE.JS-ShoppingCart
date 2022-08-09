@@ -28,12 +28,12 @@
               <div class="title-box">
                 <h1>Join</h1>
               </div>
-              <input type="text" placeholder="아이디" class="input-join-id">
-              <input type="password" placeholder="비밀번호" class="input-join-pw">
-              <input type="password" placeholder="비밀번호 확인" class="input-join-pwcheck">
-              <input type="text" placeholder="이름" class="input-join-name">
+              <input type="text" placeholder="이메일" class="input-join-id" v-model="inputEmail">
+              <input type="password" placeholder="비밀번호" class="input-join-pw" v-model="inputPw">
+              <input type="password" placeholder="비밀번호 확인" class="input-join-pwcheck" v-model="inputPwCheck">
+              <input type="text" placeholder="이름" class="input-join-name" v-model="inputName">
             </p>
-            <p class="join-btn-box"><button>Join</button></p>
+            <p class="join-btn-box"><button @click="registerUser">Join</button></p>
           </div>
           
         </div>
@@ -51,6 +51,10 @@ export default {
     return {
       isClickJoin: false,
       isLogin: true,
+      inputEmail: '',
+      inputPw: '',
+      inputPwCheck: '',
+      inputName: '',
     }
   },
   methods: {
@@ -59,14 +63,56 @@ export default {
     },
     hideJoinModal: function() {
       this.isClickJoin = false;
+    },
+    registerUser: function() {
+
+      if (this.inputEmail && this.inputPw && this.inputPwCheck && this.inputName) {
+        //입력값에 대한 체크
+        const isPermitted = this.checkRegisterInfo(this.inputEmail, this.inputPw, this.inputPwCheck, this.inputName);
+
+        //Axios Post /api/register
+        if (isPermitted) {
+          
+        }
+      } else {
+        alert('네 항목을 모두 입력해주세요!');
+      }
+    },
+    checkRegisterInfo: function(email, pw, pwCheck, name) {
+      //정규식
+      const regEmail = /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/;
+      const regPassword = /^[A-Za-z0-9]{6,20}$/;
+      const regName = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
+
+      let isPermitted = false; 
+
+      if (!regEmail.test(email)) {
+        alert('잘못된 이메일 형식입니다.');
+        this.inputEmail = '';
+      } else if (email.length > 20) {
+        alert('이메일은 20자 이하로 입력하세요.');
+        this.inputEmail = '';
+      } else if (!regPassword.test(pw)) {
+        alert('비밀번호는 영문, 숫자로 6자~20자 이내로 입력하세요.');
+        this.inputPw = '';
+        his.inputPwCheck = '';
+      } else if (pw !== pwCheck) {
+        alert('비밀번호와 확인 비밀번호가 일치하지 않습니다.');
+        this.inputPwCheck = '';
+      } else if (!regName.test(name)) {
+        alert('이름은 한글만 입력 가능합니다.');
+        this.inputName = '';
+      } else if (name.length > 5) {
+        alert('이름은 5자 이하로 입력하세요.');
+        this.inputName = '';
+      } else {
+        isPermitted = true;
+      }
+      return isPermitted;
     }
   },
   created() {
-    axios.get('http://localhost:3000/api/')
-      .then((res) => {
-        const data = res.data;
-        console.log(data.test);
-      })
+  
   },
 }
 </script>
