@@ -5,10 +5,13 @@ const process = {
     });
   },
   register: (req, res) => {
+    const { email, pw, name } = req.body;
     res.json({
-      test: 'testsdf'
-    })
-  }
+      email,
+      pw,
+      name,
+    });
+  },
 };
 
 module.exports = {

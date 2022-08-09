@@ -13,8 +13,10 @@ dotenv.config();
 
 app.set('port', process.env.PORT);
 
-//third-party middlewares
+// middlewares
 app.use(cors());
+app.use(express.json());
+app.use(express.urlencoded({extended: false}));
 
 //라우터 연결
 app.use('/api', homeRouter);

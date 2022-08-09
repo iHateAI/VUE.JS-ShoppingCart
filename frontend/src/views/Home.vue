@@ -72,7 +72,17 @@ export default {
 
         //Axios Post /api/register
         if (isPermitted) {
-          
+          const data = {
+            email: this.inputEmail,
+            pw: this.inputPw,
+            name: this.inputName,
+          };
+
+          axios.post('http://localhost:3000/api/auth/register', data)
+            .then((res) => {
+              const { email, pw, name } = res.data;
+              alert(`${email}이랑 ${pw}랑 ${name} 잘 받음`);
+            });
         }
       } else {
         alert('네 항목을 모두 입력해주세요!');
