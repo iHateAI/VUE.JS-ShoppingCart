@@ -1,16 +1,25 @@
+const userModel = require('../models/User');
+
 const process = {
+  // 로그인 처리
   login: (req, res) => {
     res.json({
       test: 'testdata',
     });
   },
-  register: (req, res) => {
-    const { email, pw, name } = req.body;
-    res.json({
-      email,
-      pw,
-      name,
-    });
+  // 회원가입 처리
+  register: async (req, res) => {
+    const data = req.body;
+    const User = new userModel(data);
+    try {
+      const result = await User.create()
+      console.log('등록 성공');
+      res.json(result);
+      
+    } catch (err) {
+      console.log(err);
+      console.log('실패');
+    }
   },
 };
 

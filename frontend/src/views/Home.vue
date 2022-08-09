@@ -74,14 +74,12 @@ export default {
         if (isPermitted) {
           const data = {
             email: this.inputEmail,
-            pw: this.inputPw,
+            password: this.inputPw,
             name: this.inputName,
           };
-
           axios.post('http://localhost:3000/api/auth/register', data)
             .then((res) => {
-              const { email, pw, name } = res.data;
-              alert(`${email}이랑 ${pw}랑 ${name} 잘 받음`);
+              console.log(typeof(res.data));
             });
         }
       } else {
