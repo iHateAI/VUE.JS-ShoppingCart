@@ -65,12 +65,11 @@ export default {
       this.isClickJoin = false;
     },
     registerUser: function() {
-
       if (this.inputEmail && this.inputPw && this.inputPwCheck && this.inputName) {
         //입력값에 대한 체크
         const isPermitted = this.checkRegisterInfo(this.inputEmail, this.inputPw, this.inputPwCheck, this.inputName);
 
-        //Axios Post /api/register
+        //사용자 등록
         if (isPermitted) {
           const data = {
             email: this.inputEmail,
@@ -79,7 +78,12 @@ export default {
           };
           axios.post('http://localhost:3000/api/auth/register', data)
             .then((res) => {
-              console.log(typeof(res.data));
+              alert(res.data);
+              location.href = 'http://localhost:8080/';
+            }).catch((err) => {
+              if (err.response.status === 404) {
+                alert(err.response.data);
+              }
             });
         }
       } else {

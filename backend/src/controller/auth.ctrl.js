@@ -1,3 +1,5 @@
+const bcrypt = require('bcrypt');
+
 const userModel = require('../models/User');
 
 const process = {
@@ -9,16 +11,24 @@ const process = {
   },
   // 회원가입 처리
   register: async (req, res) => {
-    const data = req.body;
+    const hashedPw = await bcrypt.hash(req.body.password, 12);
+    const data = {
+      email: req.body.email,
+      password: hashedPw,
+      name: req.body.name,
+    };
     const User = new userModel(data);
     try {
-      const result = await User.create()
-      console.log('등록 성공');
-      res.json(result);
-      
+      const [rows] = await User.findByEmail();
+      if (rows.length > 0) {
+        return res.status(404).send('이미 존재하는 이메일입니다.');
+      }
+      await User.create();
+      res.status(201).send('회원가입이 완료되었습니다!');
     } catch (err) {
-      console.log(err);
-      console.log('실패');
+      res.status(404).json({
+        err: err.toString(),
+      });
     }
   },
 };
