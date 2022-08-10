@@ -16,7 +16,6 @@
         </div>
       </div>
     </div>
-    
   </div>
 </template>
 
@@ -28,7 +27,6 @@ export default {
     return {
       productsData: [],
       sizeValue: 's',
-
     }
   },
   methods: {
@@ -48,7 +46,6 @@ export default {
         console.error(err);
       })
   }
-
 }
 </script>
 
