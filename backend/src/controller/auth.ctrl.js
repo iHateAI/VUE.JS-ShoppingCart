@@ -19,7 +19,7 @@ const process = {
     };
     const User = new userModel(data);
     try {
-      const [rows] = await User.findByEmail();
+      const rows = await User.findByEmail();
       if (rows.length > 0) {
         return res.status(404).send('이미 존재하는 이메일입니다.');
       }

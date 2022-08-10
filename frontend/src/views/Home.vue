@@ -10,7 +10,7 @@
           <input type="password" placeholder="Password" class="input-pw">
         </p>
       </div>
-      <p class="btn-box"><button>Login</button></p>
+      <p class="btn-box"><button @click="login">Login</button></p>
       <p class="join-ask">계정이 없으신가요? <span class="show-join-modal" @click="showJoinModal">Sign Up</span></p>
     </div>
     <div v-else class="welcome-box">
@@ -64,6 +64,9 @@ export default {
     hideJoinModal: function() {
       this.isClickJoin = false;
     },
+    login: function() {
+      alert('로그인 프로세스');
+    },
     registerUser: function() {
       if (this.inputEmail && this.inputPw && this.inputPwCheck && this.inputName) {
         //입력값에 대한 체크
@@ -76,6 +79,8 @@ export default {
             password: this.inputPw,
             name: this.inputName,
           };
+
+          //axios 사용자 정보 등록
           axios.post('http://localhost:3000/api/auth/register', data)
             .then((res) => {
               alert(res.data);
@@ -96,6 +101,7 @@ export default {
       const regPassword = /^[A-Za-z0-9]{6,20}$/;
       const regName = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
 
+      // 입력 허가 유무
       let isPermitted = false; 
 
       if (!regEmail.test(email)) {
@@ -122,9 +128,6 @@ export default {
       }
       return isPermitted;
     }
-  },
-  created() {
-  
   },
 }
 </script>

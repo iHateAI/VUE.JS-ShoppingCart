@@ -2,7 +2,7 @@
   <div class="container">
     <div class="product-list">
       <div class="product-item" v-for="product in productsData" :key="product.id">
-        <img v-bind:src="product.imgUrl" class="product-img">
+        <img v-bind:src="product.imgurl" class="product-img">
         <div class="product-info">
           <h3 id="productBrand">{{product.brand}}</h3>
           <h5 id="productName">{{product.name}}</h5>
@@ -21,17 +21,12 @@
 </template>
 
 <script>
-
+import axios from 'axios';
 
 export default {
   data() {
     return {
-      productsData: [
-        {id: 1, brand: '커버낫', name: '에센셜 쿨 코튼 2-PACK 티셔츠', price: 49000, imgUrl: `https://image.msscdn.net/images/goods_img/20210316/1848166/1848166_11_125.jpg`},
-        {id: 2, brand: '페플', name: '스테이 얼론 + 보드마스터 그래픽', price: 53800, imgUrl: `https://image.msscdn.net/images/goods_img/20210427/1921901/1921901_4_125.jpg`},
-        {id: 3, brand: '예일', name: '2 TONE ARCH TEE', price: 39000, imgUrl: `https://image.msscdn.net/images/goods_img/20210312/1841764/1841764_3_125.jpg`},
-        {id: 4, brand: '무신사 스탠다드', name: '릴렉스 핏 크루 넥 반팔 티셔츠', price: 11900, imgUrl: `https://image.msscdn.net/images/goods_img/20190327/996177/996177_3_125.jpg`},
-      ],
+      productsData: [],
       sizeValue: 's',
 
     }
@@ -43,8 +38,15 @@ export default {
       } else {
         alert('사이즈 입력해');
       }
-      
     }
+  },
+  created() {
+    axios.get('http://localhost:3000/api/products')
+      .then((res) => {
+        this.productsData = res.data;
+      }).catch((err) => {
+        console.error(err);
+      })
   }
 
 }
