@@ -38,8 +38,10 @@
 * BackEnd - user 컨트롤러, 모델 생성 및 구현
 * BackEnd - 회원가입 기능 구현
 * BackEnd - bcrypt를 이용한 비밀번호 암호화 구현
+* BackEnd - 이메일 중복 체크 구현
 * BackEnd - products 컨트롤러, 모델 생성 및 구현
 * BackEnd - 상품 정보 불러오기 구현
+* BackEnd - Products 테이블에서 size 컬럼 삭제(DB)
 
 
 

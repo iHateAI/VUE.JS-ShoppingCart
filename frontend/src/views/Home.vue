@@ -6,8 +6,8 @@
       </div>
       <div class="input-box">
         <p>
-          <input type="text" placeholder="ID" class="input-id">
-          <input type="password" placeholder="Password" class="input-pw">
+          <input type="text" placeholder="ID" class="input-id" v-model="email">
+          <input type="password" placeholder="Password" class="input-pw" v-model="password">
         </p>
       </div>
       <p class="btn-box"><button @click="login">Login</button></p>
@@ -51,6 +51,8 @@ export default {
     return {
       isClickJoin: false,
       isLogin: true,
+      email: '',
+      password: '',
       inputEmail: '',
       inputPw: '',
       inputPwCheck: '',
@@ -65,7 +67,20 @@ export default {
       this.isClickJoin = false;
     },
     login: function() {
-      alert('로그인 프로세스');
+      const data = {
+        email: this.email,
+        password: this.password,
+      }
+      axios.post('http://localhost:3000/api/auth/login', data)
+        .then((res) => {
+          if (res.data === 'success') {
+            location.href='http://localhost:8080/products';
+          } else {
+            alert(res.data);
+          }
+
+        })
+        .catch((err) => console.log(err));
     },
     registerUser: function() {
       if (this.inputEmail && this.inputPw && this.inputPwCheck && this.inputName) {
@@ -129,6 +144,17 @@ export default {
       return isPermitted;
     }
   },
+  created() {
+    axios.post('http://localhost:3000/api/auth/check')
+      .then((res) => {
+        console.log(res.data);
+        const isLoggedIn = res.data;
+        if (isLoggedIn) {
+          location.href='http://localhost:3000/api/products';
+        } 
+      })
+      .catch((err) => console.log(err))
+  }
 }
 </script>
 

@@ -1,13 +1,30 @@
 const bcrypt = require('bcrypt');
-
+const passport = require('passport');
 const userModel = require('../models/User');
 
 const process = {
   // 로그인 처리
-  login: (req, res) => {
-    res.json({
-      test: 'testdata',
-    });
+  login: async (req, res, next) => {
+    passport.authenticate('local', (authError, user, info) => {
+      if(authError) {
+        return next(authError);
+      }
+      if (!user) {
+        return res.send(info.message);
+      }
+      return req.login(user, (loginError) => {
+        if (loginError) {
+          return res.send(info.message);
+        }
+        return res.send('success');
+      });
+    })(req, res, next);
+  },
+  // 로그아웃 처리
+  logout: (req, res) => {
+    req.logout();
+    req.session.destroy();
+    console.log('로그아웃 처리된듯');
   },
   // 회원가입 처리
   register: async (req, res) => {
@@ -21,7 +38,8 @@ const process = {
     try {
       const rows = await User.findByEmail();
       if (rows.length > 0) {
-        return res.status(404).send('이미 존재하는 이메일입니다.');
+        //return res.status(404).send('이미 존재하는 이메일입니다.');
+        return res.json(rows[0]);
       }
       await User.create();
       res.status(201).send('회원가입이 완료되었습니다!');
