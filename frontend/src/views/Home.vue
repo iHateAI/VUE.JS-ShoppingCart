@@ -11,7 +11,7 @@
         </p>
       </div>
       <p class="btn-box"><button @click="login">Login</button></p>
-      <p class="join-ask">계정이 없으신가요? <span class="show-join-modal" @click="showJoinModal">Sign Up</span></p>
+      <p class="join-ask">{{$store.state.abc}}계정이 없으신가요? <span class="show-join-modal" @click="showJoinModal">Sign Up</span></p>
     </div>
     <div v-else class="welcome-box">
       누구누구님 환영합니다.
@@ -145,13 +145,9 @@ export default {
     }
   },
   created() {
-    axios.post('http://localhost:3000/api/auth/check')
+    axios.get('http://localhost:3000/api/auth/check')
       .then((res) => {
         console.log(res.data);
-        const isLoggedIn = res.data;
-        if (isLoggedIn) {
-          location.href='http://localhost:3000/api/products';
-        } 
       })
       .catch((err) => console.log(err))
   }

@@ -26,6 +26,11 @@ const process = {
     req.session.destroy();
     console.log('로그아웃 처리된듯');
   },
+  // 로그인 체크
+  loginCheck: (req, res) => {
+    console.log(req.isAuthenticated());
+    res.send('gd');
+  },
   // 회원가입 처리
   register: async (req, res) => {
     const hashedPw = await bcrypt.hash(req.body.password, 12);
