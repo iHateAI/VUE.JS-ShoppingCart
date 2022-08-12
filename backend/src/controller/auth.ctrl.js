@@ -7,13 +7,13 @@ const process = {
   login: async (req, res, next) => {
     passport.authenticate('local', (authError, user, info) => {
       if(authError) {
-        return next(authError);
+        return res.send(info.message);
       }
       if (!user) {
         return res.send(info.message);
       }
       return req.login(user, (loginError) => {
-        if (loginError) {
+        if (loginError) { 
           return res.send(info.message);
         }
         return res.send('success');
@@ -24,12 +24,11 @@ const process = {
   logout: (req, res) => {
     req.logout();
     req.session.destroy();
-    console.log('로그아웃 처리된듯');
+    console.log('로그아웃 처리된듯'); 
   },
   // 로그인 체크
   loginCheck: (req, res) => {
-    console.log(req.isAuthenticated());
-    res.send('gd');
+    console.log('로그인 체크', req.user);
   },
   // 회원가입 처리
   register: async (req, res) => {

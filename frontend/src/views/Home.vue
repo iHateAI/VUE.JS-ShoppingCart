@@ -71,9 +71,11 @@ export default {
         email: this.email,
         password: this.password,
       }
-      axios.post('http://localhost:3000/api/auth/login', data)
+      axios.post('http://localhost:3000/api/auth/login', data, {withCredentials: true})
         .then((res) => {
           if (res.data === 'success') {
+            this.$store.commit('allowAuth', true);
+            this.$store.commit('setUser', 'hhs');
             location.href='http://localhost:8080/products';
           } else {
             alert(res.data);
@@ -145,7 +147,9 @@ export default {
     }
   },
   created() {
-    axios.get('http://localhost:3000/api/auth/check')
+    axios.post('http://localhost:3000/api/auth/check', {
+      email: 'test19@test.com'
+    }, {withCredentials: true})
       .then((res) => {
         console.log(res.data);
       })

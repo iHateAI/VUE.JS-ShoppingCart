@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="product-list">
-      <div class="product-item" v-for="product in productsData" :key="product.id">
+      <div class="product-item" v-for="product in $store.state.productsData" :key="product.id">
         <img v-bind:src="product.imgurl" class="product-img">
         <div class="product-info">
           <h3 id="productBrand">{{product.brand}}</h3>
@@ -25,7 +25,6 @@ import axios from 'axios';
 export default {
   data() {
     return {
-      productsData: [],
       sizeValue: 's',
     }
   },
@@ -41,7 +40,7 @@ export default {
   created() {
     axios.get('http://localhost:3000/api/products')
       .then((res) => {
-        this.productsData = res.data;
+        this.$store.state.productsData = res.data;
       }).catch((err) => {
         console.error(err);
       })
@@ -56,7 +55,6 @@ li {
 
 .container {
   height: 100vh;
-
   display: flex;
   justify-content: center;
   align-items: center;

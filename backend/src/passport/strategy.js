@@ -25,7 +25,7 @@ module.exports = () => {
         }
       } catch(err) {
         console.log(err);
-        done(err);
+        done({message: 'Login Strategy Error'});
       }
     })
   );

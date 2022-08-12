@@ -7,7 +7,7 @@ const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const passport = require('passport');
 
-const app = express(); 
+const app = express();
 
 //라우터 불러오기
 const homeRouter = require('./src/routes/home');
@@ -22,7 +22,7 @@ app.set('port', process.env.PORT);
 
 // middlewares
 app.use(morgan('dev'));
-app.use(cors());
+app.use(cors({ origin: 'http://localhost:8080', credentials: true }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser('coocookie'));
@@ -48,7 +48,7 @@ app.use('/api/products', productsRouter);
 // 에러 처리
 app.use((err, req, res, next) => {
   console.log(err);
-})
+});
 
 app.listen(app.get('port'), () => {
   console.log(`http://localhost:${app.get('port')}`);
