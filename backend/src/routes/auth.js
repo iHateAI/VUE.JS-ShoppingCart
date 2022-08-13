@@ -6,7 +6,8 @@ const router = express.Router();
 const ctrl = require('../controller/auth.ctrl');
 
 router.post('/login', ctrl.process.login);
-router.get('/logout', ctrl.process.logout);
+router.post('/logout', ctrl.process.logout);
 router.post('/register', ctrl.process.register);
 router.post('/check', ctrl.process.loginCheck);
+
 module.exports = router;

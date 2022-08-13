@@ -16,7 +16,12 @@ module.exports = () => {
         if (userInfo.length > 0) {
           const isRightPassword = await bcrypt.compare(password, userInfo[0].password);
           if (isRightPassword) {
-            done(null, userInfo[0]);
+            const data = {
+              id: userInfo[0].id,
+              email: userInfo[0].email,
+              name: userInfo[0].name
+            }
+            done(null, data);
           } else {
             done(null, false, {message: '비밀번호가 일치하지 않습니다.'});
           }

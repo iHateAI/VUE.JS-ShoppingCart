@@ -28,6 +28,7 @@ export default {
       sizeValue: 's',
     }
   },
+
   methods: {
     test: function() {
       if (this.sizeValue) {
@@ -37,12 +38,18 @@ export default {
       }
     }
   },
+  
   created() {
     axios.get('http://localhost:3000/api/products')
       .then((res) => {
         this.$store.state.productsData = res.data;
       }).catch((err) => {
         console.error(err);
+      });
+    
+    axios.post('http://localhost:3000/api/auth/check', {email:'dd'}, {withCredentials: true})
+      .then((res) => {
+        console.log(res.data);
       })
   }
 }

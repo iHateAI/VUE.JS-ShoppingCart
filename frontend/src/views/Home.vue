@@ -63,27 +63,36 @@ export default {
     showJoinModal: function() {
       this.isClickJoin = true;
     },
+
     hideJoinModal: function() {
       this.isClickJoin = false;
     },
+    
     login: function() {
       const data = {
         email: this.email,
         password: this.password,
       }
+
       axios.post('http://localhost:3000/api/auth/login', data, {withCredentials: true})
         .then((res) => {
-          if (res.data === 'success') {
-            this.$store.commit('allowAuth', true);
-            this.$store.commit('setUser', 'hhs');
-            location.href='http://localhost:8080/products';
-          } else {
-            alert(res.data);
+          const data = {
+            id: res.data.id,
+            email: res.data.email,
+            name: res.data.name,
+            token: res.data.token
           }
-
+          if (res.status === 200 && data.token) {
+            this.$store.commit('setUser', data);
+            this.$router.push({name: 'products'});
+            // location.href='http://localhost:8080/products';
+          } else {
+            alert('로그인 실패');
+          }
         })
         .catch((err) => console.log(err));
     },
+
     registerUser: function() {
       if (this.inputEmail && this.inputPw && this.inputPwCheck && this.inputName) {
         //입력값에 대한 체크
@@ -112,6 +121,7 @@ export default {
         alert('네 항목을 모두 입력해주세요!');
       }
     },
+
     checkRegisterInfo: function(email, pw, pwCheck, name) {
       //정규식
       const regEmail = /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/;
@@ -146,14 +156,16 @@ export default {
       return isPermitted;
     }
   },
+
   created() {
-    axios.post('http://localhost:3000/api/auth/check', {
-      email: 'test19@test.com'
-    }, {withCredentials: true})
-      .then((res) => {
-        console.log(res.data);
-      })
-      .catch((err) => console.log(err))
+    // axios.post('http://localhost:3000/api/auth/check',{
+    //   email: ''
+    // }, {withCredentials: true})
+    //   .then((res) => {
+    //     console.log(res.data);
+    //   })
+    //   .catch((err) => console.log(err))
+    this.$store.commit('allowLoginView');
   }
 }
 </script>

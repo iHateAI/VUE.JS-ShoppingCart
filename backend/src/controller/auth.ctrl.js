@@ -2,33 +2,40 @@ const bcrypt = require('bcrypt');
 const passport = require('passport');
 const userModel = require('../models/User');
 
-const process = {
+const process = { 
   // 로그인 처리
   login: async (req, res, next) => {
     passport.authenticate('local', (authError, user, info) => {
-      if(authError) {
+      if (authError) {
         return res.send(info.message);
       }
       if (!user) {
         return res.send(info.message);
       }
       return req.login(user, (loginError) => {
-        if (loginError) { 
+        if (loginError) {
           return res.send(info.message);
         }
-        return res.send('success');
+        console.log(user);
+        return res.send({
+          id: user.id,
+          email: user.email,
+          name: user.name,
+          token: '토큰',
+        });
       });
     })(req, res, next);
   },
   // 로그아웃 처리
   logout: (req, res) => {
+    console.log('sssssss')
     req.logout();
     req.session.destroy();
-    console.log('로그아웃 처리된듯'); 
+    res.send('로그아웃');
   },
   // 로그인 체크
   loginCheck: (req, res) => {
-    console.log('로그인 체크', req.user);
+    res.send(req.session.cookie);
   },
   // 회원가입 처리
   register: async (req, res) => {

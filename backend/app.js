@@ -41,7 +41,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 //라우터 연결
-app.use('/api', homeRouter);
+app.use('/api', homeRouter); 
 app.use('/api/auth', authRouter);
 app.use('/api/products', productsRouter);
 
