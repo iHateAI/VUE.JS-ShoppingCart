@@ -28,10 +28,10 @@
               <div class="title-box">
                 <h1>Join</h1>
               </div>
-              <input type="text" placeholder="이메일" class="input-join-id" v-model="inputEmail">
-              <input type="password" placeholder="비밀번호" class="input-join-pw" v-model="inputPw">
-              <input type="password" placeholder="비밀번호 확인" class="input-join-pwcheck" v-model="inputPwCheck">
-              <input type="text" placeholder="이름" class="input-join-name" v-model="inputName">
+              <input type="text" placeholder="이메일" class="input-join-id" v-model="inputEmail" />
+              <input type="password" placeholder="비밀번호" class="input-join-pw" v-model="inputPw" />
+              <input type="password" placeholder="비밀번호 확인" class="input-join-pwcheck" v-model="inputPwCheck" />
+              <input type="text" placeholder="이름" class="input-join-name" v-model="inputName" />
             </p>
             <p class="join-btn-box"><button @click="registerUser">Join</button></p>
           </div>
@@ -73,19 +73,18 @@ export default {
         email: this.email,
         password: this.password,
       }
-
+      console.log(data.email, data.password);
       axios.post('http://localhost:3000/api/auth/login', data, {withCredentials: true})
         .then((res) => {
-          const data = {
-            id: res.data.id,
-            email: res.data.email,
-            name: res.data.name,
-            token: res.data.token
-          }
-          if (res.status === 200 && data.token) {
+          if (res.status === 200 && res.data.id) {
+            const data = {
+              id: res.data.id,
+              email: res.data.email,
+              name: res.data.name,
+            }
             this.$store.commit('setUser', data);
+            localStorage.setItem('allow-access', true);
             this.$router.push({name: 'products'});
-            // location.href='http://localhost:8080/products';
           } else {
             alert('로그인 실패');
           }
@@ -158,13 +157,6 @@ export default {
   },
 
   created() {
-    // axios.post('http://localhost:3000/api/auth/check',{
-    //   email: ''
-    // }, {withCredentials: true})
-    //   .then((res) => {
-    //     console.log(res.data);
-    //   })
-    //   .catch((err) => console.log(err))
     this.$store.commit('allowLoginView');
   }
 }

@@ -16,12 +16,10 @@ const process = {
         if (loginError) {
           return res.send(info.message);
         }
-        console.log(user);
         return res.send({
           id: user.id,
           email: user.email,
           name: user.name,
-          token: '토큰',
         });
       });
     })(req, res, next);
@@ -64,6 +62,10 @@ const process = {
       });
     }
   },
+
+  getUserInfo: (req, res) => {
+    res.json(req.user);
+  }
 };
 
 module.exports = {

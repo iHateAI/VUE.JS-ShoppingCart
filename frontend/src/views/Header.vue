@@ -3,7 +3,8 @@
     <ol>
       <li v-on:click="checkLogin"><router-link to="/products">상품</router-link></li>
       <li v-on:click="checkLogin"><router-link to="/cart">장바구니</router-link></li>
-      <li v-if="$store.state.userToken" v-on:click="logout" class="logout-nav">로그아웃</li>
+      <li v-if="$store.state.userId" class="ordered-nav">주문내역</li>
+      <li v-if="$store.state.userId" v-on:click="logout" class="logout-nav">로그아웃</li>
       
     </ol>
   </header>
@@ -15,7 +16,10 @@ import axios from 'axios';
 export default {
   methods: {
     checkLogin() {
-      this.$store.commit('loginCheck');
+      if(!this.$store.state.userId) {
+        alert('로그인 이후 이용해주세요.');
+        this.$router.push({name: 'home'});
+      }
     },
     
     logout() {
@@ -26,14 +30,16 @@ export default {
               id: null,
               email: null,
               name: null,
-              token: null,
             }
             this.$store.commit('setUser', data);
+            localStorage.removeItem('allow-access');
             this.$router.push({name: 'home'});
+          } else {
+            alert('로그아웃 실패');
           }
         })
         .catch((err) => {
-          alert('에러남');
+          alert('로그아웃 에러');
         })
     }
   },
@@ -57,7 +63,7 @@ header ol {
   line-height: 80px;
 }
 
-header ol .logout-nav {
+header ol .logout-nav, ordered-nav {
   cursor: pointer;
 }
 

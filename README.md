@@ -46,6 +46,8 @@
 ## ~ 2022.08.13.
 * BackEnd - 로그인 구현 중 발생한 버그로 아직도 고생 중..
 
+## ~ 2022.08.14.
+* BackEnd - 로그인 구현 성공..
 
 # 데이터베이스 테이블 정의
 
@@ -56,7 +58,7 @@
 |GET|/api|로그인 체크|
 |POST|/api/auth/login|로그인|
 |POST|/api/auth/register|유저 회원가입|
-|GET|/api/auth/logout|로그아웃|
+|DELETE|/api/auth/logout|로그아웃|
 |GET|/api/products|상품 정보 제공|
 |POST|/api/products|장바구니에 상품 등록|
 |GET|/api/carts|장바구니에 등록된 상품 정보 제공|

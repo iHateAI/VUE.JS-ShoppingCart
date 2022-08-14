@@ -14,7 +14,12 @@ module.exports = () => {
     const User = new userModel({email, password: null, name: null});
     try {
       const result = await User.findByEmail();
-      done(null, result[0]);
+      const data = {
+        id: result[0].id,
+        email: result[0].email,
+        name: result[0].name,
+      }
+      done(null, data);
     } catch(err) {
       done(err);
     }
