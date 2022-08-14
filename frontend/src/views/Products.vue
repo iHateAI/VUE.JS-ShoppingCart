@@ -46,11 +46,6 @@ export default {
       }).catch((err) => {
         console.error(err);
       });
-    
-    axios.post('http://localhost:3000/api/auth/check', {email:'dd'}, {withCredentials: true})
-      .then((res) => {
-        
-      })
   }
 }
 </script>

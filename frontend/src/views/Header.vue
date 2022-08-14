@@ -16,7 +16,7 @@ import axios from 'axios';
 export default {
   methods: {
     checkLogin() {
-      if(!this.$store.state.userId) {
+      if(!this.$store.state.userEmail) {
         alert('로그인 이후 이용해주세요.');
         this.$router.push({name: 'home'});
       }

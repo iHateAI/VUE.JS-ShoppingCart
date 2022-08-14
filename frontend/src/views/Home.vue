@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div class="login-box" v-if="isLogin">
+    <div class="login-box">
       <div class="title-box">
         <h1>Login</h1>
       </div>
@@ -12,9 +12,6 @@
       </div>
       <p class="btn-box"><button @click="login">Login</button></p>
       <p class="join-ask">{{$store.state.abc}}계정이 없으신가요? <span class="show-join-modal" @click="showJoinModal">Sign Up</span></p>
-    </div>
-    <div v-else class="welcome-box">
-      누구누구님 환영합니다.
     </div>
 
     <div class="join-modal" v-if="isClickJoin">
@@ -50,7 +47,6 @@ export default {
   data() {
     return {
       isClickJoin: false,
-      isLogin: true,
       email: '',
       password: '',
       inputEmail: '',
@@ -73,10 +69,9 @@ export default {
         email: this.email,
         password: this.password,
       }
-      console.log(data.email, data.password);
       axios.post('http://localhost:3000/api/auth/login', data, {withCredentials: true})
         .then((res) => {
-          if (res.status === 200 && res.data.id) {
+          if (res.status === 200 && res.data.email) {
             const data = {
               id: res.data.id,
               email: res.data.email,
@@ -109,7 +104,7 @@ export default {
           axios.post('http://localhost:3000/api/auth/register', data)
             .then((res) => {
               alert(res.data);
-              location.href = 'http://localhost:8080/';
+              this.$router.push({name: 'home'});
             }).catch((err) => {
               if (err.response.status === 404) {
                 alert(err.response.data);
