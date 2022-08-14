@@ -28,10 +28,14 @@ const process = {
   },
   // 로그아웃 처리
   logout: (req, res) => {
-    console.log('sssssss')
     req.logout();
     req.session.destroy();
-    res.send('로그아웃');
+    if (!req.isAuthenticated()) {
+      res.cookie('connect.sid', '', {maxAge: 0});
+      res.send(req.isAuthenticated());
+    } else {
+      res.send('error: 로그아웃 실패');
+    }
   },
   // 로그인 체크
   loginCheck: (req, res) => {

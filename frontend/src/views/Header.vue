@@ -3,7 +3,7 @@
     <ol>
       <li v-on:click="checkLogin"><router-link to="/products">상품</router-link></li>
       <li v-on:click="checkLogin"><router-link to="/cart">장바구니</router-link></li>
-      <li v-if="$store.state.userToken" v-on:click="logout">로그아웃</li>
+      <li v-if="$store.state.userToken" v-on:click="logout" class="logout-nav">로그아웃</li>
       
     </ol>
   </header>
@@ -19,19 +19,22 @@ export default {
     },
     
     logout() {
-      console.log('dd');
-      axios.post('http://localhost:3000/api/auth/logout', {email: 'abc'}, {withCredentials: true})
-        .then(res => {
-          console.log(res.data);
-          const data = {
-            id: null,
-            email: null,
-            name: null,
-            token: null
+      axios.delete('http://localhost:3000/api/auth/logout', {withCredentials: true})
+        .then((res) => {
+          if (res.data === false) {
+            const data = {
+              id: null,
+              email: null,
+              name: null,
+              token: null,
+            }
+            this.$store.commit('setUser', data);
+            this.$router.push({name: 'home'});
           }
-          this.$store.commit('setUser', data);
-          this.$router.push({name: 'home'})
-        }). catch(err => console.log(err));
+        })
+        .catch((err) => {
+          alert('에러남');
+        })
     }
   },
 }
@@ -52,6 +55,10 @@ header ol {
   display: flex;
   justify-content: space-around;
   line-height: 80px;
+}
+
+header ol .logout-nav {
+  cursor: pointer;
 }
 
 a {
