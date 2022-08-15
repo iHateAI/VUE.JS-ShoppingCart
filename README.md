@@ -96,10 +96,11 @@
 * FrontEnd - 새로고침 되면 State 초기화 되는 현상 fixed (localStorage 이용)
 
 ## ~ 2022.08.15.
-* FrontEnd - 장바구니에 상품 추가 axios 통신
 * BackEnd - DB cart 테이블 product_id 컬럼 추가
 * BackEnd - DB cart 테이블 count 컬럼 추가
-
+* BackEnd - carts 컨트롤러, carts 모델 구현
+* BackEnd - 장바구니 상품 추가 구현
+* BackEnd - 장바구니 정보 불러오기 구현
 
 
 # 데이터베이스 테이블 정의

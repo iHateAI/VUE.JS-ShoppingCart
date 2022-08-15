@@ -12,18 +12,9 @@ const process = {
     }
   },
   getCartsInfo: async (req, res) => {
-    const data = {
-      userId: null,
-      id: null,
-      brand: null,
-      name: null,
-      size: null,
-      price: null,
-      imgurl: null,
-    }
-    const Carts = new cartsModel(data);
+    const Carts = new cartsModel({});
     try {
-      const rows = Carts.findAll();
+      const rows = await Carts.findAll();
       res.json(rows);
     } catch(error) {
       res.send(error);

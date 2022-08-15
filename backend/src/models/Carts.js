@@ -36,7 +36,8 @@ module.exports = class Carts {
 
   async findAll() {
     try {
-      conse [rows] = await mysql.query('SELECT * FROM cart');
+      const [rows] = await mysql.query('SELECT * FROM cart');
+      
       return rows;
     } catch(error) {
       console.log(error);
