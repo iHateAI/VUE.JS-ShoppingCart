@@ -51,6 +51,8 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
   data() {
     return {
@@ -69,7 +71,17 @@ export default {
     hideOrderModal: function() {
       this.isClickOrder = !this.isClickOrder;
     }
-  }
+  },
+  created() {
+    axios.get('http://localhost:3000/api/carts')
+      .then(res => {
+        this.ordersData = res.data;
+      })
+      .catch(err => {
+        console.log(err);
+      })
+  },
+
 }
 </script>
 

@@ -51,7 +51,6 @@ const process = {
     try {
       const rows = await User.findByEmail();
       if (rows.length > 0) {
-        //return res.status(404).send('이미 존재하는 이메일입니다.');
         return res.json(rows[0]);
       }
       await User.create();

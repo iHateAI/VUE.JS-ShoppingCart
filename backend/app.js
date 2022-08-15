@@ -13,6 +13,7 @@ const app = express();
 const homeRouter = require('./src/routes/home');
 const authRouter = require('./src/routes/auth');
 const productsRouter = require('./src/routes/products');
+const cartsRouter = require('./src/routes/carts');
 
 const passportConfig = require('./src/passport');
 dotenv.config();
@@ -44,6 +45,7 @@ app.use(passport.session());
 app.use('/api', homeRouter); 
 app.use('/api/auth', authRouter);
 app.use('/api/products', productsRouter);
+app.use('/api/carts', cartsRouter);
 
 // 에러 처리
 app.use((err, req, res, next) => {

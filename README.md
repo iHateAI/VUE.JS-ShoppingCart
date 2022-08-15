@@ -20,6 +20,19 @@
 |BackEnd|passport|로그인 구현|
 |BackEnd|passport-local|local-Strategy 사용|
 
+# REST 주소 설계
+|HTTP 메소드|주소|역할|
+|:--:|:--:|:--:|
+|GET|/api|로그인 체크|
+|POST|/api/auth/login|로그인|
+|POST|/api/auth/register|유저 회원가입|
+|DELETE|/api/auth/logout|로그아웃|
+|GET|/api/products|상품 정보 제공|
+|POST|/api/carts|장바구니에 상품 등록|
+|GET|/api/carts|장바구니에 등록된 상품 정보 제공|
+|DELETE|/api/carts|장바구니에서 선택된 상품 제거|
+|POST|/api/order|장바구니에 등록된 상품 주문|
+
 
 ## ~ 2022.07.26. 개발 사항
 * Vue CLI를 이용해 FrontEnd 서버 구축
@@ -73,24 +86,20 @@
 
 ## ~ 2022.08.13.
 * BackEnd - 로그인 구현 중 발생한 버그로 아직도 고생 중..
-
+* FrontEnd - Vuex로 중앙에서 상태 관리 시작
+* FrontEnd - Credentials 이슈 fixed (axios에 {withCredentials: true} 전달)
+* BackEnd - cors 미들웨어로 Credentials 이슈 fixed
 
 ## ~ 2022.08.14.
 * BackEnd - 로그인 구현 성공..
+* FrontEnd - 로그인된 사용자만 다른 페이지에 접근 가능하도록 설정
+* FrontEnd - 새로고침 되면 State 초기화 되는 현상 fixed (localStorage 이용)
+
+## ~ 2022.08.15.
+* FrontEnd - 장바구니에 상품 추가 axios 통신
+* BackEnd - DB cart 테이블 product_id 컬럼 추가
+* BackEnd - DB cart 테이블 count 컬럼 추가
+
 
 
 # 데이터베이스 테이블 정의
-
-
-# REST 주소 설계
-|HTTP 메소드|주소|역할|
-|:--:|:--:|:--:|
-|GET|/api|로그인 체크|
-|POST|/api/auth/login|로그인|
-|POST|/api/auth/register|유저 회원가입|
-|DELETE|/api/auth/logout|로그아웃|
-|GET|/api/products|상품 정보 제공|
-|POST|/api/products|장바구니에 상품 등록|
-|GET|/api/carts|장바구니에 등록된 상품 정보 제공|
-|DELETE|/api/carts|장바구니에서 선택된 상품 제거|
-|POST|/api/order|장바구니에 등록된 상품 주문|

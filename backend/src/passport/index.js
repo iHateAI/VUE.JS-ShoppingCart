@@ -10,7 +10,6 @@ module.exports = () => {
   })
  
   passport.deserializeUser(async (email, done) => {
-    console.log('deserializeUs', email);
     const User = new userModel({email, password: null, name: null});
     try {
       const result = await User.findByEmail();
