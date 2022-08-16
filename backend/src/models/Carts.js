@@ -12,11 +12,10 @@ module.exports = class Carts {
   }
 
   async create() {
-    const existingInfo = await this.findById();
+    const existingInfo = await this.findByProductIdAndUserId();
 
     if (existingInfo.length > 0) {
-      const result = this.updateCountByProductId();
-      
+      const result = this.updateCountByProductIdAndUserId();
     } else {
       const result = await mysql.query(
         'INSERT INTO cart(user_id, product_id, brand, name, size, price, count, imgurl) VALUES(?,?,?,?,?,?,?,?)',
@@ -37,14 +36,13 @@ module.exports = class Carts {
   async findAll() {
     try {
       const [rows] = await mysql.query('SELECT * FROM cart');
-      
       return rows;
-    } catch(error) {
+    } catch (error) {
       console.log(error);
     }
   }
 
-  async findById() {
+  async findByProductId() {
     try {
       const [rows] = await mysql.query(
         'SELECT * FROM cart WHERE product_id = ?',
@@ -56,11 +54,36 @@ module.exports = class Carts {
     }
   }
 
-  async updateCountByProductId() {
+  async findByUserId() {
+    try {
+      const [rows] = await mysql.query('SELECT * FROM cart WHERE user_id = ?', [
+        this.userId,
+      ]);
+      console.log(this.userId);
+      console.log(rows);
+      return rows;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async findByProductIdAndUserId() {
+    try {
+      const [rows] = await mysql.query(
+        'SELECT * FROM cart WHERE user_id = ? AND product_id = ?',
+        [this.userId, this.productId]
+      );
+      return rows;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async updateCountByProductIdAndUserId() {
     try {
       const result = await mysql.query(
-        'UPDATE cart SET count = count + 1 WHERE product_id = ?',
-        [this.productId]
+        'UPDATE cart SET count = count + 1 WHERE user_id = ? AND product_id = ?',
+        [this.userId, this.productId]
       );
       console.log('업데이트');
     } catch (error) {

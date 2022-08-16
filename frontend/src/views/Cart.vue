@@ -69,7 +69,8 @@ export default {
     }
   },
   created() {
-    axios.get('http://localhost:3000/api/carts', {withCredentials: true})
+    const userId = this.$store.state.userId;
+    axios.get(`http://localhost:3000/api/carts/${userId}`, {withCredentials: true})
       .then(res => {
         const data = res.data;
         this.ordersData = data;

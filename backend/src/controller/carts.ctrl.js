@@ -12,9 +12,10 @@ const process = {
     }
   },
   getCartsInfo: async (req, res) => {
-    const Carts = new cartsModel({});
+    const {userId} = req.params;
+    const Carts = new cartsModel({userId: userId});
     try {
-      const rows = await Carts.findAll();
+      const rows = await Carts.findByUserId();
       res.json(rows);
     } catch(error) {
       res.send(error);

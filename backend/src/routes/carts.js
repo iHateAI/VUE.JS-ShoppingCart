@@ -4,7 +4,7 @@ const ctrl = require('../controller/carts.ctrl');
 
 const router = express.Router();
 
-router.get('/', ctrl.process.getCartsInfo);
+router.get('/:userId', ctrl.process.getCartsInfo);
 router.post('/', ctrl.process.addCarts);
 
 
