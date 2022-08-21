@@ -4,6 +4,7 @@ module.exports = class Carts {
   constructor(product) {
     this.userId = product.userId;
     this.productId = product.id;
+    this.cartId = product.cartId;
     this.brand = product.brand;
     this.name = product.name;
     this.size = product.size;
@@ -59,8 +60,6 @@ module.exports = class Carts {
       const [rows] = await mysql.query('SELECT * FROM cart WHERE user_id = ?', [
         this.userId,
       ]);
-      console.log(this.userId);
-      console.log(rows);
       return rows;
     } catch (error) {
       console.log(error);
@@ -91,10 +90,20 @@ module.exports = class Carts {
     }
   }
 
+  async deleteOne() {
+    try {
+      await mysql.query('DELETE FROM cart WHERE id = ?', [
+        this.cartId,
+      ]);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   async deleteAll() {
     try {
       const result = await mysql.query('DELETE FROM cart');
-      console.log('삭제');
+      console.log('모두 삭제');
     } catch (error) {
       console.log(error);
     }

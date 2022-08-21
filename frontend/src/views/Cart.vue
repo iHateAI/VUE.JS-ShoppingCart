@@ -26,7 +26,7 @@
             <td>{{order.size}}</td>
             <td>{{order.price.toLocaleString()}}</td>
             <td>{{order.count}}</td>
-            <td><button id="delete-btn">삭제</button></td>
+            <td><button id="delete-btn" @click="deleteProduct(order.id)">삭제</button></td>
           </tr>
         </tbody>
       </table>
@@ -40,13 +40,12 @@
         <div class="order-confirm">
           <p>주문을 완료하시겠습니까?</p>
           <div class="order-btn-box">
-            <button class="done-btn">주문완료</button>
+            <button class="done-btn" @click='addToCarts'>주문완료</button>
             <button class="cancel-btn" @click="hideOrderModal">취소</button>
           </div>
         </div>
       </div>
     </div>
-
   </div>
 </template>
 
@@ -54,7 +53,7 @@
 import axios from 'axios';
 
 export default {
-  data() {
+  data() { 
     return {
       ordersData: [],
       isClickOrder: false,
@@ -64,8 +63,55 @@ export default {
     showOrderModal: function() {
       this.isClickOrder = !this.isClickOrder;
     },
+
     hideOrderModal: function() {
       this.isClickOrder = !this.isClickOrder;
+    },
+
+    addToCarts: function() {
+      if (ordersData.length < 1) {
+        alert('장바구니가 비어있습니다.');
+        this.$router.push({name: 'products'});
+      } else {
+        const userId = this.$store.state.userId;
+        const summary = `${ordersData[0].brand} ${ordersData[0].name} 외 ${ordersData.length - 1} 건`;
+        
+        const data = {
+          userId,
+          summary,
+
+        }
+        axios.post(`http://localhost:3000/api/history`, data, {withCredentials: true})
+          .then(res => console.log(res))
+          .catch(err => console.log(err));
+      }
+      
+    },
+
+    getCartsInfo: function() {
+      const userId = this.$store.state.userId;
+      axios.get(`http://localhost:3000/api/carts/${userId}`, {withCredentials: true})
+        .then(res => {
+          const data = res.data;
+          this.ordersData = data;
+        })
+        .catch(err => {
+          console.log(err);
+        })
+    },
+
+    deleteProduct: function(id) {
+      axios.delete(`http://localhost:3000/api/carts/${id}`, {withCredentials: true})
+        .then(res => {
+          alert(res.data.message);
+          try {
+            this.getCartsInfo();
+          } catch (err) {
+            console.log('리스트 업데이트 실패');
+          }
+        })
+        .catch(err => alert(res.data.message));
+      
     }
   },
   created() {
@@ -132,14 +178,13 @@ export default {
 .container .cart-list .cart-table #delete-btn {
   margin: 15px;
   border: none;
-  background-color: rgb(231, 172, 124);
+  background-color: black;
   width: 100px;
   height: 30px;
   border-radius: 50px;
   font-weight: 900;
-  color: rgb(136, 24, 39);
+  color: white;
   cursor: pointer;
-  
 }
 
 .container .order-modal {

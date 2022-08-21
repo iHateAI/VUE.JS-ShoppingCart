@@ -5,6 +5,7 @@ const userModel = require('../models/User');
 const process = { 
   // 로그인 처리
   login: async (req, res, next) => {
+    console.log('dd');
     passport.authenticate('local', (authError, user, info) => {
       if (authError) {
         return res.send(info.message);

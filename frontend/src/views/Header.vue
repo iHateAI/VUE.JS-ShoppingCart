@@ -3,7 +3,7 @@
     <ol>
       <li v-on:click="checkLogin"><router-link to="/products">상품</router-link></li>
       <li v-on:click="checkLogin"><router-link to="/cart">장바구니</router-link></li>
-      <li v-if="$store.state.userId" class="ordered-nav">주문내역</li>
+      <li v-if="$store.state.userId" class="ordered-nav"><router-link to="/history">주문내역</router-link></li>
       <li v-if="$store.state.userId" v-on:click="logout" class="logout-nav">로그아웃</li>
       
     </ol>
@@ -63,10 +63,9 @@ header ol {
   line-height: 80px;
 }
 
-header ol .logout-nav, ordered-nav {
+header ol .logout-nav {
   cursor: pointer;
 }
-
 a {
   text-decoration: none;
   color: black;
