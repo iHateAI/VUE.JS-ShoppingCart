@@ -105,7 +105,3 @@
 ## ~ 2022.08.16.
 * BackEnd - 장바구니 사용자 id에 맞게 출력
 * FrontEnd - 주문내역 Vue 추가 (OrderHistory.vue)
-
-
-
-# 데이터베이스 테이블 정의
